@@ -17,10 +17,18 @@ import { GoodDetailsPage } from 'pages/GoodDetailsPage';
 export const App = () => {
   const { user } = useAuth();
   const dispatch = useDispatch();
-  const [count, setCount] = useState(0);
+  const [cart, setCart] = useState(
+    JSON.parse(localStorage.getItem('cart')) || []
+  );
 
-  const getCount = value => {
-    setCount(value);
+  const getCart = value => {
+    setCart(value);
+  };
+
+  const handleDeleteFromCart = id => {
+    const cartAfterDelete = cart.filter(item => item !== id);
+    setCart(cartAfterDelete);
+    localStorage.setItem('cart', JSON.stringify(cartAfterDelete));
   };
 
   useEffect(() => {
@@ -30,7 +38,7 @@ export const App = () => {
   return (
     <>
       <Routes>
-        <Route path="/" element={<SharedLayout count={count} />}>
+        <Route path="/" element={<SharedLayout cart={cart} />}>
           <Route index element={<HomePage />} />
           <Route
             path="/register"
@@ -50,11 +58,22 @@ export const App = () => {
           />
           <Route
             path="/cart"
-            element={<PrivateRoute component={<CartPage />} redirectTo="/" />}
+            element={
+              <PrivateRoute
+                component={
+                  <CartPage
+                    cart={cart}
+                    deleteFromCart={handleDeleteFromCart}
+                    getCart={getCart}
+                  />
+                }
+                redirectTo="/"
+              />
+            }
           />
           <Route
             path="/details/:id"
-            element={<GoodDetailsPage getCount={getCount} />}
+            element={<GoodDetailsPage cart={cart} getCart={getCart} />}
           />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Route>

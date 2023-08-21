@@ -1,7 +1,7 @@
 import { useGoods } from 'hooks';
 import { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { deleteFromCart } from 'redux/auth/operations';
+// import { useDispatch } from 'react-redux';
+// import { deleteFromCart } from 'redux/auth/operations';
 import { useAuth } from 'hooks';
 import BeatLoader from 'react-spinners/BeatLoader';
 import { ImBin2 } from 'react-icons/im';
@@ -22,10 +22,10 @@ import {
 } from './CartItem.styled';
 import Media from 'react-media';
 
-export const CartItem = ({ goodId, getTotalSum, getOrder }) => {
+export const CartItem = ({ goodId, getTotalSum, getOrder, deleteFromCart }) => {
   const [good, setGood] = useState({});
   const [quantity, setQuantity] = useState(1);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const { goods } = useGoods();
   const { isRefreshing } = useAuth();
 
@@ -49,7 +49,8 @@ export const CartItem = ({ goodId, getTotalSum, getOrder }) => {
   };
 
   const handleDeleteClick = () => {
-    dispatch(deleteFromCart(goodId));
+    deleteFromCart(goodId);
+    // dispatch(deleteFromCart(goodId));
   };
 
   return isRefreshing ? (

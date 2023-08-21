@@ -23,15 +23,12 @@ import { CommentItem } from 'components/CommentItem';
 import { addComment, getComments } from 'redux/comments/operations';
 import { AddCommentModal } from 'components/AddCommentModal';
 
-export const GoodDetailsItem = ({ isShowCommentOpen, getCount }) => {
+export const GoodDetailsItem = ({ isShowCommentOpen, cart, getCart }) => {
   const { id } = useParams();
   const [good, setGood] = useState({});
   const [status, setStatus] = useState('IDLE');
   const [showComment, setShowComment] = useState(false);
   const [isCommentModalOpen, setIsCommentModalOpen] = useState(false);
-  const [cart, setCart] = useState(
-    JSON.parse(localStorage.getItem('cart')) || []
-  );
   const dispatch = useDispatch();
   const { user, isLoggedIn } = useAuth();
   const { comments } = useComments();
@@ -66,7 +63,7 @@ export const GoodDetailsItem = ({ isShowCommentOpen, getCount }) => {
       return;
     } else {
       localStorage.setItem('cart', JSON.stringify([...cart, id]));
-      setCart([...cart, id]);
+      getCart([...cart, id]);
     }
   };
 
@@ -94,9 +91,9 @@ export const GoodDetailsItem = ({ isShowCommentOpen, getCount }) => {
     isShowCommentOpen(showComment);
   }, [isShowCommentOpen, showComment]);
 
-  useEffect(() => {
-    getCount(cart.length);
-  }, [cart.length, getCount]);
+  // useEffect(() => {
+  //   getCount(cart.length);
+  // }, [cart.length, getCount]);
 
   return status === 'PENDING' ? (
     <LoaderContainer>

@@ -14,7 +14,7 @@ import {
   LogoImg,
 } from './Header.styled';
 
-export const Header = ({ count }) => {
+export const Header = ({ cart }) => {
   const { isLoggedIn } = useAuth();
   return (
     <Media
@@ -49,7 +49,7 @@ export const Header = ({ count }) => {
                     <NavHomeLink to="/">Home</NavHomeLink>
                   </LogoLinksWrapper>
                   <NavWrapper>
-                    {isLoggedIn ? <UserNav count={count} /> : <AuthNav />}
+                    {isLoggedIn ? <UserNav cart={cart} /> : <AuthNav />}
                   </NavWrapper>
                   <LogoImg src={Mandala} alt="mandala" />
                 </HeaderWrapper>

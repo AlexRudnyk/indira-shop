@@ -11,7 +11,7 @@ import {
   IndicatorText,
 } from './UserNav.styled';
 
-export const UserNav = ({ count }) => {
+export const UserNav = ({ cart }) => {
   const { user } = useAuth();
   const dispatch = useDispatch();
 
@@ -30,9 +30,9 @@ export const UserNav = ({ count }) => {
       ) : (
         <CartLinkWrapper>
           <UserNavLink to="/cart">Cart</UserNavLink>
-          {count > 0 && (
+          {cart.length > 0 && (
             <GoodsInCartIndicator>
-              <IndicatorText>{count}</IndicatorText>
+              <IndicatorText>{cart.length}</IndicatorText>
             </GoodsInCartIndicator>
           )}
         </CartLinkWrapper>

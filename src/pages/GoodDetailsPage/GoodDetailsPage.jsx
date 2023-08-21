@@ -8,7 +8,7 @@ import {
 } from './GoodDetailsPage.styled';
 import { useState } from 'react';
 
-export const GoodDetailsPage = ({ getCount }) => {
+export const GoodDetailsPage = ({ getCount, cart, getCart }) => {
   const [isCommentOpen, setIsCommentOpen] = useState(false);
   const { isRefreshing } = useAuth();
   const { comments } = useComments();
@@ -30,6 +30,8 @@ export const GoodDetailsPage = ({ getCount }) => {
         <GoodDetailsItem
           isShowCommentOpen={handleIsShowCommentOpen}
           getCount={getCount}
+          cart={cart}
+          getCart={getCart}
         />
       </GoodDetailsContainer>
     </GoodDetailsPageSection>

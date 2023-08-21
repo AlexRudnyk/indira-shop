@@ -1,5 +1,5 @@
 import { useAuth } from 'hooks';
-import { useDispatch } from 'react-redux';
+// import { useDispatch } from 'react-redux';
 import { CartItem } from 'components/CartItem';
 import BeatLoader from 'react-spinners/BeatLoader';
 import {
@@ -17,12 +17,13 @@ import {
 } from './CartPage.styled';
 import { useState } from 'react';
 import axios from 'axios';
-import { clearCart } from 'redux/auth/operations';
+// import { clearCart } from 'redux/auth/operations';
 
-export const CartPage = () => {
+export const CartPage = ({ cart, deleteFromCart, getCart }) => {
   const { user, isRefreshing } = useAuth();
   const [totalSum, setTotalSum] = useState('');
-  const dispatch = useDispatch();
+  // const cart = JSON.parse(localStorage.getItem('cart')) || [];
+  // const dispatch = useDispatch();
 
   let totalSumArr = [];
   let goodsArray = [];
@@ -52,7 +53,8 @@ export const CartPage = () => {
         // 'http://localhost:3030/api/users/order',
         mailBody
       );
-      dispatch(clearCart());
+      localStorage.removeItem('cart');
+      getCart([]);
       return data;
     } catch (error) {
       console.log(error.message);
@@ -66,16 +68,17 @@ export const CartPage = () => {
   ) : (
     <CartPageSection $length={user.goodsInCart.length}>
       <CartPageContainer>
-        {user.goodsInCart.length !== 0 ? (
+        {cart.length !== 0 ? (
           <>
             <CartPageTitle>Your goods in cart</CartPageTitle>
             <CartPageList>
-              {user.goodsInCart.map(goodId => (
+              {cart.map(goodId => (
                 <CartItem
                   goodId={goodId}
                   key={goodId}
                   getTotalSum={getTotalSum}
                   getOrder={handleGetOrder}
+                  deleteFromCart={deleteFromCart}
                 />
               ))}
             </CartPageList>
