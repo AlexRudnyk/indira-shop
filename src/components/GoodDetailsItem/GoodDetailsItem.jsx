@@ -17,7 +17,6 @@ import {
   AddCommentClick,
 } from './GoodDetailsItem.styled';
 import { useDispatch } from 'react-redux';
-import { addToCart } from 'redux/auth/operations';
 import { useAuth, useComments } from 'hooks';
 import { toast } from 'react-toastify';
 import { CommentItem } from 'components/CommentItem';
