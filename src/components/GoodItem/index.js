@@ -1,0 +1,1 @@
+export { GoodItem } from './GoodItem';

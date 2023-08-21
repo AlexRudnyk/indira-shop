@@ -1,0 +1,1 @@
+export { GoodDetailsPage } from './GoodDetailsPage';

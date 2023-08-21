@@ -1,0 +1,1 @@
+export { GoodsSection } from './GoodsSection';

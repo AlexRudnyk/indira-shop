@@ -1,0 +1,1 @@
+export { ModalEditGood } from './ModalEditGood';
