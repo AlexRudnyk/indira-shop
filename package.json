@@ -1,6 +1,6 @@
 {
-  "homepage": "https://alexrudnyk.github.io/indira-frontend",
-  "name": "indira-frontend",
+  "homepage": "https://alexrudnyk.github.io/indira-shop",
+  "name": "indira-shop",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

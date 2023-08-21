@@ -6,7 +6,7 @@ import { RegisterPage } from 'pages/RegisterPage';
 import { LoginPage } from 'pages/LoginPage';
 import { useAuth } from 'hooks';
 import { useDispatch } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { refreshUser } from 'redux/auth/operations';
 import { AdminPage } from 'pages/AdminPage';
 import { AdminRoute } from './Routes/AdminRoute';
@@ -17,6 +17,11 @@ import { GoodDetailsPage } from 'pages/GoodDetailsPage';
 export const App = () => {
   const { user } = useAuth();
   const dispatch = useDispatch();
+  const [count, setCount] = useState(0);
+
+  const getCount = value => {
+    setCount(value);
+  };
 
   useEffect(() => {
     dispatch(refreshUser());
@@ -25,7 +30,7 @@ export const App = () => {
   return (
     <>
       <Routes>
-        <Route path="/" element={<SharedLayout />}>
+        <Route path="/" element={<SharedLayout count={count} />}>
           <Route index element={<HomePage />} />
           <Route
             path="/register"
@@ -47,7 +52,10 @@ export const App = () => {
             path="/cart"
             element={<PrivateRoute component={<CartPage />} redirectTo="/" />}
           />
-          <Route path="/details/:id" element={<GoodDetailsPage />} />
+          <Route
+            path="/details/:id"
+            element={<GoodDetailsPage getCount={getCount} />}
+          />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Route>
       </Routes>
