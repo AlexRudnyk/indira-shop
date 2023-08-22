@@ -6,9 +6,6 @@ import {
   UserNavWrapper,
   UserGreetingText,
   UserNavLink,
-  // CartLinkWrapper,
-  // GoodsInCartIndicator,
-  // IndicatorText,
 } from './UserNav.styled';
 
 export const UserNav = ({ cart }) => {
@@ -25,19 +22,7 @@ export const UserNav = ({ cart }) => {
       <UserNavLogoutBtn type="button" onClick={handleLogoutClick}>
         Logout
       </UserNavLogoutBtn>
-      {
-        user.role === 'admin' && <UserNavLink to="/admin">Admin</UserNavLink>
-        // : (
-        //   <CartLinkWrapper>
-        //     <UserNavLink to="/cart">Cart</UserNavLink>
-        //     {cart.length > 0 && (
-        //       <GoodsInCartIndicator>
-        //         <IndicatorText>{cart.length}</IndicatorText>
-        //       </GoodsInCartIndicator>
-        //     )}
-        //   </CartLinkWrapper>
-        // )
-      }
+      {user.role === 'admin' && <UserNavLink to="/admin">Admin</UserNavLink>}
     </UserNavWrapper>
   );
 };

@@ -4,11 +4,7 @@ import styled from 'styled-components';
 export const AuthNavLink = styled(Link)`
   display: block;
   padding: 10px;
-  width: 55px;
-
-  &:not(:last-child) {
-    margin-right: 20px;
-  }
+  width: 70px;
 
   background-color: #b36c40;
   border: none;
@@ -25,4 +21,18 @@ export const AuthNavLink = styled(Link)`
   -webkit-box-shadow: 10px 10px 27px 0px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 10px 10px 27px 0px rgba(0, 0, 0, 0.75);
   box-shadow: 10px 10px 27px 0px rgba(0, 0, 0, 0.75);
+
+  @media screen and (max-width: 767.98px) {
+    &:not(:last-child) {
+      margin-bottom: 20px;
+    }
+  }
+
+  @media screen and (min-width: 768px) {
+    width: 55px;
+
+    &:not(:last-child) {
+      margin-right: 20px;
+    }
+  }
 `;

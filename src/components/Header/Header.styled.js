@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { RxHamburgerMenu } from 'react-icons/rx';
 
 export const HeaderSection = styled.header`
   position: fixed;
@@ -116,6 +117,7 @@ export const UserNavLink = styled(Link)`
 
 export const CartLinkWrapper = styled.div`
   position: relative;
+  margin-right: 20px;
 `;
 
 export const GoodsInCartIndicator = styled.div`
@@ -135,4 +137,10 @@ export const IndicatorText = styled.p`
   color: white;
   font-size: 12px;
   font-weight: bold;
+`;
+
+export const BurgerImg = styled(RxHamburgerMenu)`
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
 `;

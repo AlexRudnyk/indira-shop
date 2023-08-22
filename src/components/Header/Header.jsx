@@ -16,10 +16,19 @@ import {
   CartLinkWrapper,
   GoodsInCartIndicator,
   IndicatorText,
+  BurgerImg,
 } from './Header.styled';
+import { useState } from 'react';
+import { BurgerMenu } from 'components/BurgerMenu';
 
 export const Header = ({ cart }) => {
-  const { isLoggedIn } = useAuth();
+  const { user, isLoggedIn } = useAuth();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const handleBurgerClickToggle = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
   return (
     <Media
       queries={{
@@ -37,9 +46,23 @@ export const Header = ({ cart }) => {
                     <Logo to="/">Indira</Logo>
                   </LogoLinksWrapper>
                   <NavWrapper>
-                    {isLoggedIn ? <UserNav /> : <AuthNav />}
+                    {user.role !== 'admin' && (
+                      <CartLinkWrapper>
+                        <UserNavLink to="/cart">Cart</UserNavLink>
+                        {cart.length > 0 && (
+                          <GoodsInCartIndicator>
+                            <IndicatorText>{cart.length}</IndicatorText>
+                          </GoodsInCartIndicator>
+                        )}
+                      </CartLinkWrapper>
+                    )}
+                    <BurgerImg onClick={handleBurgerClickToggle} />
+                    {/* {isLoggedIn ? <UserNav /> : <AuthNav />} */}
                   </NavWrapper>
                   <LogoImg src={Mandala} alt="mandala" />
+                  {isMenuOpen && (
+                    <BurgerMenu onClose={handleBurgerClickToggle} />
+                  )}
                 </HeaderWrapper>
               </Container>
             </HeaderSection>
@@ -54,14 +77,16 @@ export const Header = ({ cart }) => {
                   </LogoLinksWrapper>
                   <NavWrapper>
                     {isLoggedIn ? <UserNav /> : <AuthNav />}
-                    <CartLinkWrapper>
-                      <UserNavLink to="/cart">Cart</UserNavLink>
-                      {cart.length > 0 && (
-                        <GoodsInCartIndicator>
-                          <IndicatorText>{cart.length}</IndicatorText>
-                        </GoodsInCartIndicator>
-                      )}
-                    </CartLinkWrapper>
+                    {user.role !== 'admin' && (
+                      <CartLinkWrapper>
+                        <UserNavLink to="/cart">Cart</UserNavLink>
+                        {cart.length > 0 && (
+                          <GoodsInCartIndicator>
+                            <IndicatorText>{cart.length}</IndicatorText>
+                          </GoodsInCartIndicator>
+                        )}
+                      </CartLinkWrapper>
+                    )}
                   </NavWrapper>
                   <LogoImg src={Mandala} alt="mandala" />
                 </HeaderWrapper>

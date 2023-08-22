@@ -35,8 +35,6 @@ const schema = yup.object().shape({
 });
 
 export const OrderModal = ({ onClose, onSubmit }) => {
-  //   const [description, setDescription] = useState(good.description);
-
   useEffect(() => {
     const onEscClick = e => {
       if (e.code === 'Escape') onClose();
