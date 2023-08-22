@@ -1,5 +1,4 @@
 import { useAuth } from 'hooks';
-// import { useDispatch } from 'react-redux';
 import { CartItem } from 'components/CartItem';
 import BeatLoader from 'react-spinners/BeatLoader';
 import { OrderModal } from 'components/OrderModal';
@@ -18,14 +17,11 @@ import {
 } from './CartPage.styled';
 import { useState } from 'react';
 import axios from 'axios';
-// import { clearCart } from 'redux/auth/operations';
 
 export const CartPage = ({ cart, deleteFromCart, getCart }) => {
-  const { user, isRefreshing } = useAuth();
+  const { user, isLoggedIn, isRefreshing } = useAuth();
   const [totalSum, setTotalSum] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
-  // const cart = JSON.parse(localStorage.getItem('cart')) || [];
-  // const dispatch = useDispatch();
 
   let totalSumArr = [];
   let goodsArray = [];
@@ -54,6 +50,7 @@ export const CartPage = ({ cart, deleteFromCart, getCart }) => {
       goods: JSON.stringify(goodsArray),
       totalSum,
     };
+
     try {
       const { data } = await axios.post(
         'https://indira-backend.vercel.app/api/users/order',
@@ -68,8 +65,16 @@ export const CartPage = ({ cart, deleteFromCart, getCart }) => {
     }
   };
 
-  const handleMakeOrderClick = async () => {
-    setIsModalOpen(!isModalOpen);
+  const handleMakeOrderClick = () => {
+    if (isLoggedIn) {
+      handleOrderSubmit({
+        name: user.name,
+        phone: user.phone,
+        email: user.email,
+      });
+    } else {
+      setIsModalOpen(!isModalOpen);
+    }
   };
 
   return isRefreshing ? (

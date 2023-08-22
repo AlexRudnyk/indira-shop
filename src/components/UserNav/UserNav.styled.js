@@ -3,12 +3,18 @@ import { Link } from 'react-router-dom';
 
 export const UserNavWrapper = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: center;
+
+  @media screen and (min-width: 768px) {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
 `;
 
 export const UserNavLogoutBtn = styled.button`
   padding: 10px;
-  margin-right: 20px;
   cursor: pointer;
   background-color: #b36c40;
   border: none;
@@ -26,6 +32,14 @@ export const UserNavLogoutBtn = styled.button`
   -webkit-box-shadow: 10px 10px 27px 0px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 10px 10px 27px 0px rgba(0, 0, 0, 0.75);
   box-shadow: 10px 10px 27px 0px rgba(0, 0, 0, 0.75);
+
+  @media screen and (max-width: 767.98px) {
+    width: 90px;
+  }
+
+  @media screen and (min-width: 768px) {
+    margin-right: 20px;
+  }
 `;
 
 export const UserGreetingText = styled.p`
@@ -52,27 +66,9 @@ export const UserNavLink = styled(Link)`
   -webkit-box-shadow: 10px 10px 27px 0px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 10px 10px 27px 0px rgba(0, 0, 0, 0.75);
   box-shadow: 10px 10px 27px 0px rgba(0, 0, 0, 0.75);
+
+  @media screen and (max-width: 767.98px) {
+    width: 70px;
+    margin-top: 20px;
+  }
 `;
-
-// export const CartLinkWrapper = styled.div`
-//   position: relative;
-// `;
-
-// export const GoodsInCartIndicator = styled.div`
-//   position: absolute;
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   top: -10px;
-//   right: -10px;
-//   width: 20px;
-//   border-radius: 50%;
-//   background-color: red;
-//   padding: 4px 2px;
-// `;
-
-// export const IndicatorText = styled.p`
-//   color: white;
-//   font-size: 12px;
-//   font-weight: bold;
-// `;

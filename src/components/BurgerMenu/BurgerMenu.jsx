@@ -1,12 +1,16 @@
 import { AuthNav } from 'components/AuthNav';
+import { useAuth } from 'hooks';
 import {
   BurgerMenuWrapper,
   CloseSvg,
   NavHomeLink,
   LinksWrapper,
 } from './BurgerMenu.styled';
+import { UserNav } from 'components/UserNav';
 
 export const BurgerMenu = ({ onClose }) => {
+  const { isLoggedIn } = useAuth();
+
   const handleMenuClose = () => {
     onClose();
   };
@@ -18,7 +22,11 @@ export const BurgerMenu = ({ onClose }) => {
         <NavHomeLink to="/" onClick={handleMenuClose}>
           Home
         </NavHomeLink>
-        <AuthNav closeAfterClick={handleMenuClose} />
+        {isLoggedIn ? (
+          <UserNav closeAfterClick={handleMenuClose} />
+        ) : (
+          <AuthNav closeAfterClick={handleMenuClose} />
+        )}
       </LinksWrapper>
     </BurgerMenuWrapper>
   );

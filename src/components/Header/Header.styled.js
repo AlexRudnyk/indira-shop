@@ -62,6 +62,11 @@ export const Logo = styled(Link)`
   }
 `;
 
+export const NameWrapper = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
 export const NavHomeLink = styled(Link)`
   display: inline-block;
   padding: 10px;

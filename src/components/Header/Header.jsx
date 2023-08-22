@@ -8,6 +8,7 @@ import {
   Container,
   HeaderWrapper,
   LogoLinksWrapper,
+  NameWrapper,
   NavWrapper,
   Logo,
   NavHomeLink,
@@ -45,6 +46,11 @@ export const Header = ({ cart }) => {
                   <LogoLinksWrapper>
                     <Logo to="/">Indira</Logo>
                   </LogoLinksWrapper>
+                  {isLoggedIn && (
+                    <NameWrapper>
+                      <p>Hello, {user.name}</p>
+                    </NameWrapper>
+                  )}
                   <NavWrapper>
                     {user.role !== 'admin' && (
                       <CartLinkWrapper>
@@ -57,7 +63,6 @@ export const Header = ({ cart }) => {
                       </CartLinkWrapper>
                     )}
                     <BurgerImg onClick={handleBurgerClickToggle} />
-                    {/* {isLoggedIn ? <UserNav /> : <AuthNav />} */}
                   </NavWrapper>
                   <LogoImg src={Mandala} alt="mandala" />
                   {isMenuOpen && (
