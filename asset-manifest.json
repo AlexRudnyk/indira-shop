@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/indira-shop/static/css/main.4aeb4aac.css",
+    "main.js": "/indira-shop/static/js/main.c4bca4e9.js",
+    "static/media/mandala.png": "/indira-shop/static/media/mandala.d674d9cac6fd1954a536.png",
+    "static/media/success-check.png": "/indira-shop/static/media/success-check.d6b8af90b8407995f8bc.png",
+    "index.html": "/indira-shop/index.html",
+    "static/media/Сlose.svg": "/indira-shop/static/media/Сlose.5b868b8bc3976c8409dccd623f1ad285.svg",
+    "main.4aeb4aac.css.map": "/indira-shop/static/css/main.4aeb4aac.css.map",
+    "main.c4bca4e9.js.map": "/indira-shop/static/js/main.c4bca4e9.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.4aeb4aac.css",
+    "static/js/main.c4bca4e9.js"
+  ]
+}
