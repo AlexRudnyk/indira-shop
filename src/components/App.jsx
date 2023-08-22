@@ -10,7 +10,7 @@ import { useEffect, useState } from 'react';
 import { refreshUser } from 'redux/auth/operations';
 import { AdminPage } from 'pages/AdminPage';
 import { AdminRoute } from './Routes/AdminRoute';
-import { PrivateRoute } from './Routes/PrivateRoute';
+// import { PrivateRoute } from './Routes/PrivateRoute';
 import { CartPage } from 'pages/CartPage';
 import { GoodDetailsPage } from 'pages/GoodDetailsPage';
 
@@ -59,15 +59,10 @@ export const App = () => {
           <Route
             path="/cart"
             element={
-              <PrivateRoute
-                component={
-                  <CartPage
-                    cart={cart}
-                    deleteFromCart={handleDeleteFromCart}
-                    getCart={getCart}
-                  />
-                }
-                redirectTo="/"
+              <CartPage
+                cart={cart}
+                deleteFromCart={handleDeleteFromCart}
+                getCart={getCart}
               />
             }
           />

@@ -54,25 +54,25 @@ export const UserNavLink = styled(Link)`
   box-shadow: 10px 10px 27px 0px rgba(0, 0, 0, 0.75);
 `;
 
-export const CartLinkWrapper = styled.div`
-  position: relative;
-`;
+// export const CartLinkWrapper = styled.div`
+//   position: relative;
+// `;
 
-export const GoodsInCartIndicator = styled.div`
-  position: absolute;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  top: -10px;
-  right: -10px;
-  width: 20px;
-  border-radius: 50%;
-  background-color: red;
-  padding: 4px 2px;
-`;
+// export const GoodsInCartIndicator = styled.div`
+//   position: absolute;
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   top: -10px;
+//   right: -10px;
+//   width: 20px;
+//   border-radius: 50%;
+//   background-color: red;
+//   padding: 4px 2px;
+// `;
 
-export const IndicatorText = styled.p`
-  color: white;
-  font-size: 12px;
-  font-weight: bold;
-`;
+// export const IndicatorText = styled.p`
+//   color: white;
+//   font-size: 12px;
+//   font-weight: bold;
+// `;
