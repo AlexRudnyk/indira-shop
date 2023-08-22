@@ -59,7 +59,7 @@ export const CartItemImg = styled.img`
 
   @media screen and (min-width: 768px) {
     width: 120px;
-    height: 90px;
+    /* height: 90px; */
     margin-right: 20px;
   }
 `;
