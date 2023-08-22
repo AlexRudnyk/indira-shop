@@ -2,6 +2,7 @@ import { useAuth } from 'hooks';
 // import { useDispatch } from 'react-redux';
 import { CartItem } from 'components/CartItem';
 import BeatLoader from 'react-spinners/BeatLoader';
+import { OrderModal } from 'components/OrderModal';
 import {
   CartPageSection,
   CartPageContainer,
@@ -22,6 +23,7 @@ import axios from 'axios';
 export const CartPage = ({ cart, deleteFromCart, getCart }) => {
   const { user, isRefreshing } = useAuth();
   const [totalSum, setTotalSum] = useState('');
+  const [isModalOpen, setIsModalOpen] = useState(false);
   // const cart = JSON.parse(localStorage.getItem('cart')) || [];
   // const dispatch = useDispatch();
 
@@ -40,13 +42,18 @@ export const CartPage = ({ cart, deleteFromCart, getCart }) => {
     setTotalSum(totalSumRes);
   };
 
-  const handleOrderClick = async () => {
+  const handleOrderModalClose = () => {
+    setIsModalOpen(!isModalOpen);
+  };
+
+  const handleOrderSubmit = async ({ name, phone, email }) => {
     const mailBody = {
-      user,
+      name,
+      phone,
+      email,
       goods: JSON.stringify(goodsArray),
       totalSum,
     };
-
     try {
       const { data } = await axios.post(
         'https://indira-backend.vercel.app/api/users/order',
@@ -59,6 +66,10 @@ export const CartPage = ({ cart, deleteFromCart, getCart }) => {
     } catch (error) {
       console.log(error.message);
     }
+  };
+
+  const handleMakeOrderClick = async () => {
+    setIsModalOpen(!isModalOpen);
   };
 
   return isRefreshing ? (
@@ -86,7 +97,7 @@ export const CartPage = ({ cart, deleteFromCart, getCart }) => {
               <TotalSumText>
                 Your order is <TotalSumSpan>{totalSum}</TotalSumSpan> UAH
               </TotalSumText>
-              <OrderBtn type="button" onClick={handleOrderClick}>
+              <OrderBtn type="button" onClick={handleMakeOrderClick}>
                 Make order
               </OrderBtn>
             </MakeOrderWrapper>
@@ -97,6 +108,12 @@ export const CartPage = ({ cart, deleteFromCart, getCart }) => {
           </EmptyCartMessageWrapper>
         )}
       </CartPageContainer>
+      {isModalOpen && (
+        <OrderModal
+          onClose={handleOrderModalClose}
+          onSubmit={handleOrderSubmit}
+        />
+      )}
     </CartPageSection>
   );
 };
