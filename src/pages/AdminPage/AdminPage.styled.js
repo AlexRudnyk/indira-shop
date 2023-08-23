@@ -5,7 +5,7 @@ export const AdminPageSection = styled.section`
   background: linear-gradient(to bottom right, #b36c40, white);
 
   @media screen and (min-width: 1280px) {
-    height: 100vw;
+    height: ${props => (props.$length <= 8 ? '100vh' : '100%')};
   }
 `;
 
@@ -50,7 +50,7 @@ export const AdminPageForm = styled(Form)`
   display: flex;
   flex-direction: column;
   margin-bottom: 30px;
-  max-height: 550px;
+  max-height: 570px;
   padding: 20px;
   border-radius: 20px;
   background-color: #fff;

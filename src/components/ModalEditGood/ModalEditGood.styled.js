@@ -93,6 +93,8 @@ export const AdminPageInput = styled(Field)`
 `;
 
 export const AdminPageTextArea = styled(AdminPageInput)`
+  font-family: inherit;
+  font-size: 14px;
   resize: none;
 `;
 

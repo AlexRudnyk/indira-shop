@@ -49,7 +49,7 @@ export const AdminPage = () => {
   };
 
   return (
-    <AdminPageSection>
+    <AdminPageSection $length={goodsReverse.length}>
       <AdminPageContainer>
         <AdminPageWrapper>
           <Formik

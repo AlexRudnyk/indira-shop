@@ -82,7 +82,7 @@ export const CartPage = ({ cart, deleteFromCart, getCart }) => {
       <BeatLoader />
     </LoaderContainer>
   ) : (
-    <CartPageSection $length={user.goodsInCart.length}>
+    <CartPageSection $length={cart.length}>
       <CartPageContainer>
         {cart.length !== 0 ? (
           <>
