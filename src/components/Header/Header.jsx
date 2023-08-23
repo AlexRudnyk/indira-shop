@@ -66,7 +66,10 @@ export const Header = ({ cart }) => {
                   </NavWrapper>
                   <LogoImg src={Mandala} alt="mandala" />
                   {isMenuOpen && (
-                    <BurgerMenu onClose={handleBurgerClickToggle} />
+                    <BurgerMenu
+                      onClose={handleBurgerClickToggle}
+                      isMenuOpen={isMenuOpen}
+                    />
                   )}
                 </HeaderWrapper>
               </Container>

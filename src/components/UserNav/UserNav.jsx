@@ -9,13 +9,17 @@ import {
   UserNavLink,
 } from './UserNav.styled';
 
-export const UserNav = ({ closeAfterClick }) => {
+export const UserNav = ({ closeAfterClick, isMenuOpen }) => {
   const { user } = useAuth();
   const dispatch = useDispatch();
 
   const handleLogoutClick = () => {
-    dispatch(logout());
-    closeAfterClick();
+    if (isMenuOpen) {
+      dispatch(logout());
+      closeAfterClick();
+    } else {
+      dispatch(logout());
+    }
   };
 
   return (

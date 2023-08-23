@@ -8,7 +8,7 @@ import {
 } from './BurgerMenu.styled';
 import { UserNav } from 'components/UserNav';
 
-export const BurgerMenu = ({ onClose }) => {
+export const BurgerMenu = ({ onClose, isMenuOpen }) => {
   const { isLoggedIn } = useAuth();
 
   const handleMenuClose = () => {
@@ -23,7 +23,7 @@ export const BurgerMenu = ({ onClose }) => {
           Home
         </NavHomeLink>
         {isLoggedIn ? (
-          <UserNav closeAfterClick={handleMenuClose} />
+          <UserNav closeAfterClick={handleMenuClose} isMenuOpen={isMenuOpen} />
         ) : (
           <AuthNav closeAfterClick={handleMenuClose} />
         )}
