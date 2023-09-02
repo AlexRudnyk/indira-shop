@@ -101,7 +101,7 @@ export const NavWrapper = styled.div`
 export const UserNavLink = styled(Link)`
   display: block;
   padding: 10px;
-  width: 45px;
+  width: 50px;
 
   background-color: #b36c40;
   border: none;

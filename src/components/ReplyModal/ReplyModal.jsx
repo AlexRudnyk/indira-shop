@@ -11,10 +11,13 @@ import {
   ReplyModalTextArea,
   ReplyModalWrapper,
 } from './ReplyModal.styled';
+import { useTranslation } from 'react-i18next';
 
 const modalRoot = document.querySelector('#modal-root');
 
 export const ReplyModal = ({ onClose, onSubmit }) => {
+  const { t } = useTranslation();
+
   useEffect(() => {
     const onEscClick = e => {
       if (e.code === 'Escape') onClose();
@@ -65,7 +68,7 @@ export const ReplyModal = ({ onClose, onSubmit }) => {
                 />
                 <ErrorMessage name="text" />
 
-                <ReplyBtn type="submit">Reply</ReplyBtn>
+                <ReplyBtn type="submit">{t('Reply')}</ReplyBtn>
               </ReplyModalForm>
             )}
           </Formik>

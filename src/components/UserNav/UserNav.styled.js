@@ -22,6 +22,7 @@ export const UserNavLogoutBtn = styled.button`
   text-align: center;
   font-family: inherit;
   color: white;
+  width: 70px;
 
   transition: all 0.2s cubic-bezier(0.075, 0.82, 0.165, 1);
 

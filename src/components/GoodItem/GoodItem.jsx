@@ -5,8 +5,11 @@ import {
   GoodsItemText,
   DescriptionWrapper,
 } from './GoodItem.styled';
+import { useTranslation } from 'react-i18next';
 
 export const GoodItem = ({ good }) => {
+  const { t } = useTranslation();
+
   return (
     <>
       <GoodsItemWrapper>
@@ -17,7 +20,9 @@ export const GoodItem = ({ good }) => {
             <GoodsItemText>{good.text}</GoodsItemText>
           </div>
           <div>
-            <p>{good.price} UAH</p>
+            <p>
+              {good.price} {t('Currency')}
+            </p>
           </div>
         </DescriptionWrapper>
       </GoodsItemWrapper>

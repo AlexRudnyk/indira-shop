@@ -12,6 +12,8 @@ import {
   LoginPageTitle,
   LoginPageWrapper,
 } from './LoginPage.styled';
+import { useTranslation } from 'react-i18next';
+import i18n from 'i18n';
 
 const schema = yup.object().shape({
   email: yup
@@ -19,24 +21,22 @@ const schema = yup.object().shape({
     .email()
     .matches(
       /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
-      'available latin-based alphabet, numeric character and _ . + -'
+      i18n.t('Available_latin_based')
     )
-    .min(5, 'must be at least 5 characters')
-    .max(63, 'email length must be less than 63 characters')
-    .required(),
+    .min(5, i18n.t('Atleast_5'))
+    .max(63, i18n.t('Email_length'))
+    .required(i18n.t('Email_required')),
   password: yup
     .string()
-    .min(7, 'must be at least 7 characters')
-    .max(12, 'password length must be less than 12 characters')
-    .matches(
-      /^[a-zA-Z0-9!@#$%^&*()\-_=+{};:,<.>/?]*$/,
-      'only latinic letters. whitespaces are forbidden'
-    )
-    .required(),
+    .min(7, i18n.t('Atleast_7'))
+    .max(12, i18n.t('Password_length'))
+    .matches(/^[a-zA-Z0-9!@#$%^&*()\-_=+{};:,<.>/?]*$/, i18n.t('Only_latinic'))
+    .required(i18n.t('Password_required')),
 });
 
 export const LoginPage = () => {
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   const initialValues = {
     email: '',
@@ -57,7 +57,7 @@ export const LoginPage = () => {
     <LoginPageSection>
       <LoginPageContainer>
         <LoginPageWrapper>
-          <LoginPageTitle>Please Login</LoginPageTitle>
+          <LoginPageTitle>{t('Please_Login')}</LoginPageTitle>
           <LoginFormWrapper>
             <Formik
               initialValues={initialValues}
@@ -75,11 +75,11 @@ export const LoginPage = () => {
                 <LoginPageInput
                   type="password"
                   name="password"
-                  placeholder="Please enter your password"
+                  placeholder={t('Auth_password')}
                 />
                 <ErrorMessage name="password" />
 
-                <LoginPageBtn type="submit">Login</LoginPageBtn>
+                <LoginPageBtn type="submit">{t('Login')}</LoginPageBtn>
               </LoginPageForm>
             </Formik>
           </LoginFormWrapper>

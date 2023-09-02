@@ -12,6 +12,7 @@ import {
   OrderModalBtn,
 } from './OrderModal.styled';
 import { ErrorMessage, Formik } from 'formik';
+import { useTranslation } from 'react-i18next';
 
 const modalRoot = document.querySelector('#modal-root');
 
@@ -35,6 +36,8 @@ const schema = yup.object().shape({
 });
 
 export const OrderModal = ({ onClose, onSubmit }) => {
+  const { t } = useTranslation();
+
   useEffect(() => {
     const onEscClick = e => {
       if (e.code === 'Escape') onClose();
@@ -79,25 +82,25 @@ export const OrderModal = ({ onClose, onSubmit }) => {
                 <OrderModalInput
                   type="text"
                   name="name"
-                  placeholder="Enter your name"
+                  placeholder={t('Name_enter')}
                 />
                 <ErrorMessage name="name" />
 
                 <OrderModalInput
                   type="text"
                   name="phone"
-                  placeholder="Enter your phone"
+                  placeholder={t('Phone_enter')}
                 />
                 <ErrorMessage name="phone" />
 
                 <OrderModalInput
                   type="email"
                   name="email"
-                  placeholder="Enter your email"
+                  placeholder={t('Email_enter')}
                 />
                 <ErrorMessage name="email" />
 
-                <OrderModalBtn type="submit">Order</OrderModalBtn>
+                <OrderModalBtn type="submit">{t('Order')}</OrderModalBtn>
               </OrderModalForm>
             )}
           </Formik>

@@ -11,10 +11,13 @@ import {
   CloseSvg,
   ModalWindow,
 } from './AddCommentModal.styled';
+import { useTranslation } from 'react-i18next';
 
 const modalRoot = document.querySelector('#modal-root');
 
 export const AddCommentModal = ({ onClose, onSubmit }) => {
+  const { t } = useTranslation();
+
   useEffect(() => {
     const onEscClick = e => {
       if (e.code === 'Escape') onClose();
@@ -65,7 +68,9 @@ export const AddCommentModal = ({ onClose, onSubmit }) => {
                 />
                 <ErrorMessage name="text" />
 
-                <AddCommentBtn type="submit">Leave comment</AddCommentBtn>
+                <AddCommentBtn type="submit">
+                  {t('Leave_comment')}
+                </AddCommentBtn>
               </AddCommentForm>
             )}
           </Formik>

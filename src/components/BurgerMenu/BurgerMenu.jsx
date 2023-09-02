@@ -7,9 +7,11 @@ import {
   LinksWrapper,
 } from './BurgerMenu.styled';
 import { UserNav } from 'components/UserNav';
+import { useTranslation } from 'react-i18next';
 
 export const BurgerMenu = ({ onClose, isMenuOpen }) => {
   const { isLoggedIn } = useAuth();
+  const { t } = useTranslation();
 
   const handleMenuClose = () => {
     onClose();
@@ -20,7 +22,7 @@ export const BurgerMenu = ({ onClose, isMenuOpen }) => {
       <CloseSvg onClick={handleMenuClose} />
       <LinksWrapper>
         <NavHomeLink to="/" onClick={handleMenuClose}>
-          Home
+          {t('Home')}
         </NavHomeLink>
         {isLoggedIn ? (
           <UserNav closeAfterClick={handleMenuClose} isMenuOpen={isMenuOpen} />

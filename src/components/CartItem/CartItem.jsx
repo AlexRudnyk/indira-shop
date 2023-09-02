@@ -1,11 +1,9 @@
 import { useGoods } from 'hooks';
 import { useState, useEffect } from 'react';
-// import { useDispatch } from 'react-redux';
-// import { deleteFromCart } from 'redux/auth/operations';
 import { useAuth } from 'hooks';
 import BeatLoader from 'react-spinners/BeatLoader';
 import { ImBin2 } from 'react-icons/im';
-
+import { useTranslation } from 'react-i18next';
 import {
   CounterWrapper,
   CartItemLine,
@@ -25,9 +23,9 @@ import Media from 'react-media';
 export const CartItem = ({ goodId, getTotalSum, getOrder, deleteFromCart }) => {
   const [good, setGood] = useState({});
   const [quantity, setQuantity] = useState(1);
-  // const dispatch = useDispatch();
   const { goods } = useGoods();
   const { isRefreshing } = useAuth();
+  const { t } = useTranslation();
 
   const sum = good.price * quantity;
 
@@ -50,7 +48,6 @@ export const CartItem = ({ goodId, getTotalSum, getOrder, deleteFromCart }) => {
 
   const handleDeleteClick = () => {
     deleteFromCart(goodId);
-    // dispatch(deleteFromCart(goodId));
   };
 
   return isRefreshing ? (
@@ -60,7 +57,6 @@ export const CartItem = ({ goodId, getTotalSum, getOrder, deleteFromCart }) => {
   ) : (
     <Media
       queries={{
-        // small: '(max-width: 767.98px)',
         medium: '(min-width: 768px)',
       }}
     >
@@ -90,7 +86,9 @@ export const CartItem = ({ goodId, getTotalSum, getOrder, deleteFromCart }) => {
               +
             </CartItemQuantityBtn>
           </CounterWrapper>
-          <CartItemSum>{sum} UAH</CartItemSum>
+          <CartItemSum>
+            {sum} {t('Currency')}
+          </CartItemSum>
           <div>
             <CartItemDelBtn type="button" onClick={handleDeleteClick}>
               <ImBin2 />

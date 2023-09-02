@@ -99,7 +99,7 @@ export const AdminPageTextArea = styled(AdminPageInput)`
 `;
 
 export const AdminPageBtn = styled.button`
-  width: 70px;
+  /* width: 70px; */
   padding: 10px;
   cursor: pointer;
   background-color: #b36c40;

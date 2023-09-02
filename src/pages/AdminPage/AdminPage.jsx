@@ -16,16 +16,21 @@ import {
 import { AdminGoodItem } from 'components/AdminGoodItem';
 import { useGoods } from 'hooks';
 import { ImageUpload } from 'components/ImageUpload';
+import { useTranslation } from 'react-i18next';
+import i18n from 'i18n';
 
 const schema = yup.object().shape({
   title: yup
     .string()
     .min(2)
-    .max(30, 'must be less than 30 characters')
-    .required(),
-  text: yup.string().min(5, 'must be at least 5 characters').required(),
-  photoURL: yup.string().required(),
-  price: yup.number().required(),
+    .max(30, i18n.t('Less_30'))
+    .required(i18n.t('Title_required')),
+  text: yup
+    .string()
+    .min(5, i18n.t('Atleast_5'))
+    .required(i18n.t('Text_required')),
+  photoURL: yup.string().required(i18n.t('Photo_required')),
+  price: yup.number().required(i18n.t('Price_required')),
 });
 
 export const AdminPage = () => {
@@ -33,6 +38,7 @@ export const AdminPage = () => {
   const { goods } = useGoods();
   const [description, setDescription] = useState('');
   const goodsReverse = [...goods].reverse();
+  const { t } = useTranslation();
 
   const initialValues = {
     title: '',
@@ -64,14 +70,14 @@ export const AdminPage = () => {
                 <AdminPageInput
                   type="text"
                   name="title"
-                  placeholder="Enter Titile"
+                  placeholder={t('Enter_Titile')}
                 />
                 <ErrorMessage name="title" />
 
                 <AdminPageInput
                   type="text"
                   name="text"
-                  placeholder="Enter Text"
+                  placeholder={t('Enter_Text')}
                 />
                 <ErrorMessage name="text" />
 
@@ -80,7 +86,7 @@ export const AdminPage = () => {
                   value={description}
                   type="text"
                   name="description"
-                  placeholder="Enter description"
+                  placeholder={t('Enter_description')}
                   onChange={e => {
                     setFieldValue('description', e.target.value);
                     setDescription(e.target.value);
@@ -91,11 +97,11 @@ export const AdminPage = () => {
                 <AdminPageInput
                   type="number"
                   name="price"
-                  placeholder="Enter Price"
+                  placeholder={t('Enter_Price')}
                 />
                 <ErrorMessage name="price" />
 
-                <AdminPageBtn type="submit">Submit</AdminPageBtn>
+                <AdminPageBtn type="submit">{t('Submit')}</AdminPageBtn>
               </AdminPageForm>
             )}
           </Formik>

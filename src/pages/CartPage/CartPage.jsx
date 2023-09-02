@@ -17,11 +17,13 @@ import {
 } from './CartPage.styled';
 import { useState } from 'react';
 import axios from 'axios';
+import { useTranslation } from 'react-i18next';
 
 export const CartPage = ({ cart, deleteFromCart, getCart }) => {
   const { user, isLoggedIn, isRefreshing } = useAuth();
   const [totalSum, setTotalSum] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { t } = useTranslation();
 
   let totalSumArr = [];
   let goodsArray = [];
@@ -86,7 +88,7 @@ export const CartPage = ({ cart, deleteFromCart, getCart }) => {
       <CartPageContainer>
         {cart.length !== 0 ? (
           <>
-            <CartPageTitle>Your goods in cart</CartPageTitle>
+            <CartPageTitle>{t('Goods_in_cart')}</CartPageTitle>
             <CartPageList>
               {cart.map(goodId => (
                 <CartItem
@@ -100,16 +102,17 @@ export const CartPage = ({ cart, deleteFromCart, getCart }) => {
             </CartPageList>
             <MakeOrderWrapper>
               <TotalSumText>
-                Your order is <TotalSumSpan>{totalSum}</TotalSumSpan> UAH
+                {t('Order_is')} <TotalSumSpan>{totalSum}</TotalSumSpan>{' '}
+                {t('Currency')}
               </TotalSumText>
               <OrderBtn type="button" onClick={handleMakeOrderClick}>
-                Make order
+                {t('Make_order')}
               </OrderBtn>
             </MakeOrderWrapper>
           </>
         ) : (
           <EmptyCartMessageWrapper>
-            <EmptyCartMessage>Your cart is empty</EmptyCartMessage>
+            <EmptyCartMessage>{t('Cart_empty')}</EmptyCartMessage>
           </EmptyCartMessageWrapper>
         )}
       </CartPageContainer>

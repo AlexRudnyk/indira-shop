@@ -8,10 +8,12 @@ import {
   UserGreetingText,
   UserNavLink,
 } from './UserNav.styled';
+import { useTranslation } from 'react-i18next';
 
 export const UserNav = ({ closeAfterClick, isMenuOpen }) => {
   const { user } = useAuth();
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   const handleLogoutClick = () => {
     if (isMenuOpen) {
@@ -34,23 +36,25 @@ export const UserNav = ({ closeAfterClick, isMenuOpen }) => {
           {matches.small && (
             <UserNavWrapper>
               <UserNavLogoutBtn type="button" onClick={handleLogoutClick}>
-                Logout
+                {t('Logout')}
               </UserNavLogoutBtn>
               {user.role === 'admin' && (
                 <UserNavLink to="/admin" onClick={closeAfterClick}>
-                  Admin
+                  {t('Admin')}
                 </UserNavLink>
               )}
             </UserNavWrapper>
           )}
           {matches.medium && (
             <UserNavWrapper>
-              <UserGreetingText>Hello, {user.name}</UserGreetingText>
+              <UserGreetingText>
+                {t('Hello')}, {user.name}
+              </UserGreetingText>
               <UserNavLogoutBtn type="button" onClick={handleLogoutClick}>
-                Logout
+                {t('Logout')}
               </UserNavLogoutBtn>
               {user.role === 'admin' && (
-                <UserNavLink to="/admin">Admin</UserNavLink>
+                <UserNavLink to="/admin">{t('Admin')}</UserNavLink>
               )}
             </UserNavWrapper>
           )}

@@ -21,10 +21,13 @@ import {
 } from './Header.styled';
 import { useState } from 'react';
 import { BurgerMenu } from 'components/BurgerMenu';
+import { LangSwitcher } from 'components/LangSwitcher';
+import { useTranslation } from 'react-i18next';
 
 export const Header = ({ cart }) => {
   const { user, isLoggedIn } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { t } = useTranslation();
 
   const handleBurgerClickToggle = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -48,13 +51,16 @@ export const Header = ({ cart }) => {
                   </LogoLinksWrapper>
                   {isLoggedIn && (
                     <NameWrapper>
-                      <p>Hello, {user.name}</p>
+                      <p>
+                        {t('Hello')}, {user.name}
+                      </p>
                     </NameWrapper>
                   )}
+                  <LangSwitcher />
                   <NavWrapper>
                     {user.role !== 'admin' && (
                       <CartLinkWrapper>
-                        <UserNavLink to="/cart">Cart</UserNavLink>
+                        <UserNavLink to="/cart">{t('Cart')}</UserNavLink>
                         {cart.length > 0 && (
                           <GoodsInCartIndicator>
                             <IndicatorText>{cart.length}</IndicatorText>
@@ -81,13 +87,14 @@ export const Header = ({ cart }) => {
                 <HeaderWrapper>
                   <LogoLinksWrapper>
                     <Logo to="/">Indira</Logo>
-                    <NavHomeLink to="/">Home</NavHomeLink>
+                    <NavHomeLink to="/">{t('Home')}</NavHomeLink>
                   </LogoLinksWrapper>
+                  <LangSwitcher />
                   <NavWrapper>
                     {isLoggedIn ? <UserNav /> : <AuthNav />}
                     {user.role !== 'admin' && (
                       <CartLinkWrapper>
-                        <UserNavLink to="/cart">Cart</UserNavLink>
+                        <UserNavLink to="/cart">{t('Cart')}</UserNavLink>
                         {cart.length > 0 && (
                           <GoodsInCartIndicator>
                             <IndicatorText>{cart.length}</IndicatorText>

@@ -4,7 +4,7 @@ import styled from 'styled-components';
 export const AuthNavLink = styled(Link)`
   display: block;
   padding: 10px;
-  width: 70px;
+  width: 80px;
 
   background-color: #b36c40;
   border: none;
@@ -29,7 +29,7 @@ export const AuthNavLink = styled(Link)`
   }
 
   @media screen and (min-width: 768px) {
-    width: 55px;
+    width: 80px;
 
     &:not(:last-child) {
       margin-right: 20px;

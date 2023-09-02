@@ -12,37 +12,40 @@ import {
   RegisterPageInput,
   RegisterPageBtn,
 } from './RegisterPage.styled';
+import { useTranslation } from 'react-i18next';
+import i18n from 'i18n';
 
 const schema = yup.object().shape({
   name: yup
     .string()
     .min(2)
-    .max(16, 'must be less than 16 characters')
-    .required(),
+    .max(16, i18n.t('Less_than_16'))
+    .required(i18n.t('Name_required')),
   email: yup
     .string()
     .email()
     .matches(
       /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
-      'available latin-based alphabet, numeric character and _ . + -'
+      i18n.t('Available_latin_based')
     )
-    .min(5, 'must be at least 5 characters')
-    .max(63, 'email length must be less than 63 characters')
-    .required(),
-  phone: yup.string().matches(/^\+380\d{9}$/),
+    .min(5, i18n.t('Atleast_5'))
+    .max(63, i18n.t('Email_length'))
+    .required(i18n.t('Email_required')),
+  phone: yup
+    .string()
+    .matches(/^\+380\d{9}$/)
+    .required(i18n.t('Phone_required')),
   password: yup
     .string()
-    .min(7, 'must be at least 7 characters')
-    .max(12, 'password length must be less than 12 characters')
-    .matches(
-      /^[a-zA-Z0-9!@#$%^&*()\-_=+{};:,<.>/?]*$/,
-      'only latinic letters. whitespaces are forbidden'
-    )
-    .required(),
+    .min(7, i18n.t('Atleast_7'))
+    .max(12, i18n.t('Password_length'))
+    .matches(/^[a-zA-Z0-9!@#$%^&*()\-_=+{};:,<.>/?]*$/, i18n.t('Only_latinic'))
+    .required(i18n.t('Password_required')),
 });
 
 export const RegisterPage = () => {
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   const initialValues = {
     name: '',
@@ -75,7 +78,7 @@ export const RegisterPage = () => {
     <RegisterPageSection>
       <RegisterPageContainer>
         <RegisterPageWrapper>
-          <RegisterPageTitle>Please Register</RegisterPageTitle>
+          <RegisterPageTitle>{t('Please_Register')}</RegisterPageTitle>
           <RegisterFormWrapper>
             <Formik
               initialValues={initialValues}
@@ -86,7 +89,7 @@ export const RegisterPage = () => {
                 <RegisterPageInput
                   type="text"
                   name="name"
-                  placeholder="John Doe"
+                  placeholder={t('John_Doe')}
                 />
                 <ErrorMessage name="name" />
 
@@ -107,11 +110,11 @@ export const RegisterPage = () => {
                 <RegisterPageInput
                   type="password"
                   name="password"
-                  placeholder="Please enter your password"
+                  placeholder={t('Auth_password')}
                 />
                 <ErrorMessage name="password" />
 
-                <RegisterPageBtn type="submit">Register</RegisterPageBtn>
+                <RegisterPageBtn type="submit">{t('Register')}</RegisterPageBtn>
               </RegisterPageForm>
             </Formik>
           </RegisterFormWrapper>

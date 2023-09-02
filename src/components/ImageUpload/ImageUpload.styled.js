@@ -10,7 +10,6 @@ export const UploadLabel = styled.label`
 `;
 
 export const UploadText = styled.div`
-  width: 100px;
   padding: 10px;
 
   background-color: #b36c40;

@@ -15,10 +15,12 @@ import { deleteGood, editGood } from 'redux/goods/operations';
 import { useState } from 'react';
 import { ModalEditGood } from 'components/ModalEditGood';
 import Media from 'react-media';
+import { useTranslation } from 'react-i18next';
 
 export const AdminGoodItem = ({ good }) => {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   const handleEditGoodClick = () => {
     setIsEditModalOpen(!isEditModalOpen);
@@ -52,7 +54,9 @@ export const AdminGoodItem = ({ good }) => {
                   <AdminGoodItemImg src={good.photoURL} alt="good" />
                   <AdminTextWrapper>
                     <AdminGoodItemText>{good.title}</AdminGoodItemText>
-                    <AdminGoodItemPrice>{good.price} UAH</AdminGoodItemPrice>
+                    <AdminGoodItemPrice>
+                      {good.price} {t('Currency')}
+                    </AdminGoodItemPrice>
                   </AdminTextWrapper>
                 </ImgTextWrapper>
                 <ButtonsWrapper>
@@ -80,7 +84,9 @@ export const AdminGoodItem = ({ good }) => {
                 <AdminGoodItemImg src={good.photoURL} alt="good" />
                 <AdminTextWrapper>
                   <AdminGoodItemText>{good.title}</AdminGoodItemText>
-                  <AdminGoodItemPrice>{good.price} UAH</AdminGoodItemPrice>
+                  <AdminGoodItemPrice>
+                    {good.price} {t('Currency')}
+                  </AdminGoodItemPrice>
                 </AdminTextWrapper>
                 <AdminGoodItemBtn type="button" onClick={handleEditGoodClick}>
                   <ImPencil />

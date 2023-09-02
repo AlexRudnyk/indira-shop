@@ -12,11 +12,13 @@ import {
   AdminPageTextArea,
 } from './ModalEditGood.styled';
 import { ErrorMessage, Formik } from 'formik';
+import { useTranslation } from 'react-i18next';
 
 const modalRoot = document.querySelector('#modal-root');
 
 export const ModalEditGood = ({ onClose, onSubmit, good }) => {
   const [description, setDescription] = useState(good.description);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const onEscClick = e => {
@@ -83,7 +85,7 @@ export const ModalEditGood = ({ onClose, onSubmit, good }) => {
                 <AdminPageInput type="number" name="price" />
                 <ErrorMessage name="price" />
 
-                <AdminPageBtn type="submit">Edit</AdminPageBtn>
+                <AdminPageBtn type="submit">{t('Edit')}</AdminPageBtn>
               </AdminPageForm>
             )}
           </Formik>

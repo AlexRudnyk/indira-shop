@@ -1,7 +1,10 @@
 import { AuthNavLink } from './AuthNav.styled';
 import Media from 'react-media';
+import { useTranslation } from 'react-i18next';
 
 export const AuthNav = ({ closeAfterClick }) => {
+  const { t } = useTranslation();
+
   return (
     <Media
       queries={{
@@ -14,17 +17,17 @@ export const AuthNav = ({ closeAfterClick }) => {
           {matches.small && (
             <>
               <AuthNavLink to="/login" onClick={closeAfterClick}>
-                Login
+                {t('Login')}
               </AuthNavLink>
               <AuthNavLink to="/register" onClick={closeAfterClick}>
-                Register
+                {t('Register')}
               </AuthNavLink>
             </>
           )}
           {matches.medium && (
             <>
-              <AuthNavLink to="/login">Login</AuthNavLink>
-              <AuthNavLink to="/register">Register</AuthNavLink>
+              <AuthNavLink to="/login">{t('Login')}</AuthNavLink>
+              <AuthNavLink to="/register">{t('Register')}</AuthNavLink>
             </>
           )}
         </>

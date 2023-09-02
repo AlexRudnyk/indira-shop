@@ -22,6 +22,7 @@ import { toast } from 'react-toastify';
 import { CommentItem } from 'components/CommentItem';
 import { addComment, getComments } from 'redux/comments/operations';
 import { AddCommentModal } from 'components/AddCommentModal';
+import { useTranslation } from 'react-i18next';
 
 export const GoodDetailsItem = ({ isShowCommentOpen, cart, getCart }) => {
   const { id } = useParams();
@@ -32,6 +33,7 @@ export const GoodDetailsItem = ({ isShowCommentOpen, cart, getCart }) => {
   const dispatch = useDispatch();
   const { user, isLoggedIn } = useAuth();
   const { comments } = useComments();
+  const { t } = useTranslation();
 
   const reversedComments = [...comments].reverse();
 
@@ -91,10 +93,6 @@ export const GoodDetailsItem = ({ isShowCommentOpen, cart, getCart }) => {
     isShowCommentOpen(showComment);
   }, [isShowCommentOpen, showComment]);
 
-  // useEffect(() => {
-  //   getCount(cart.length);
-  // }, [cart.length, getCount]);
-
   return status === 'PENDING' ? (
     <LoaderContainer>
       <BeatLoader />
@@ -110,10 +108,12 @@ export const GoodDetailsItem = ({ isShowCommentOpen, cart, getCart }) => {
             <GoodDetailsTitle>{good.title}</GoodDetailsTitle>
             <GoodDetailsText>{good.text}</GoodDetailsText>
             <GoodDetailsText>{good.description}</GoodDetailsText>
-            <GoodDetailsText>Price: {good.price} UAH</GoodDetailsText>
+            <GoodDetailsText>
+              Price: {good.price} {t('Currency')}
+            </GoodDetailsText>
             {user.role !== 'admin' && (
               <GoodDetailsBtn type="button" onClick={handleAddCartClick}>
-                Add to Cart
+                {t('Add_to_Cart')}
               </GoodDetailsBtn>
             )}
             <CommentClickWrapper>
@@ -121,11 +121,11 @@ export const GoodDetailsItem = ({ isShowCommentOpen, cart, getCart }) => {
                 onClick={handleShowCommentClick}
                 $length={comments?.length}
               >
-                Comments ({comments?.length})
+                {t('Comments')} ({comments?.length})
               </CommentClick>
               {user.role !== 'admin' && (
                 <AddCommentClick onClick={handleModalAddCommentClick}>
-                  Add comment
+                  {t('Add_comment')}
                 </AddCommentClick>
               )}
             </CommentClickWrapper>

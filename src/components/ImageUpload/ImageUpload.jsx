@@ -9,11 +9,13 @@ import {
   PreviewBtn,
   PreviewImgWrapper,
 } from './ImageUpload.styled';
+import { useTranslation } from 'react-i18next';
 
 export const ImageUpload = ({ setFieldValue }) => {
   const [image, setImage] = useState(null);
   const [preview, setPreview] = useState(null);
   const [isUploaded, setIsUploaded] = useState(false);
+  const { t } = useTranslation();
 
   const uploadImage = async () => {
     const data = new FormData();
@@ -73,7 +75,7 @@ export const ImageUpload = ({ setFieldValue }) => {
           />
           {!preview && (
             <UploadLabel htmlFor="hidden-input">
-              <UploadText>Upload a file</UploadText>
+              <UploadText>{t('Upload_file')}</UploadText>
             </UploadLabel>
           )}
           {preview && (
@@ -92,10 +94,10 @@ export const ImageUpload = ({ setFieldValue }) => {
                   onClick={uploadImage}
                   disabled={isUploaded}
                 >
-                  Upload
+                  {t('Upload')}
                 </PreviewBtn>
                 <PreviewBtn type="button" onClick={handleResetClick}>
-                  Reset
+                  {t('Reset')}
                 </PreviewBtn>
               </div>
             </PreviewWrapper>
