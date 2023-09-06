@@ -6,4 +6,6 @@ export const LanguageSelect = styled.select`
   background-color: transparent;
   cursor: pointer;
   outline: 1px solid lightgrey;
+  margin-right: 20px;
+  padding: 10px;
 `;

@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
+import i18n from 'i18n';
 
 axios.defaults.baseURL = 'https://indira-backend.vercel.app';
 // axios.defaults.baseURL = 'http://localhost:3030';
@@ -34,7 +35,7 @@ export const addGoods = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const { data } = await axios.post('/api/goods/addgood', credentials);
-      toast.success('Item added successfully');
+      toast.success(i18n.t('Item_added'));
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.data);

@@ -23,6 +23,7 @@ import { CommentItem } from 'components/CommentItem';
 import { addComment, getComments } from 'redux/comments/operations';
 import { AddCommentModal } from 'components/AddCommentModal';
 import { useTranslation } from 'react-i18next';
+import i18n from 'i18n';
 
 export const GoodDetailsItem = ({ isShowCommentOpen, cart, getCart }) => {
   const { id } = useParams();
@@ -77,7 +78,7 @@ export const GoodDetailsItem = ({ isShowCommentOpen, cart, getCart }) => {
     if (isLoggedIn) {
       setIsCommentModalOpen(!isCommentModalOpen);
     } else {
-      toast.warning('Please login to leave a comment');
+      toast.warning(i18n.t('Login_to_comment'));
     }
   };
 

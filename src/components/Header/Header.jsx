@@ -56,8 +56,8 @@ export const Header = ({ cart }) => {
                       </p>
                     </NameWrapper>
                   )}
-                  <LangSwitcher />
                   <NavWrapper>
+                    <LangSwitcher />
                     {user.role !== 'admin' && (
                       <CartLinkWrapper>
                         <UserNavLink to="/cart">{t('Cart')}</UserNavLink>
@@ -89,8 +89,8 @@ export const Header = ({ cart }) => {
                     <Logo to="/">Indira</Logo>
                     <NavHomeLink to="/">{t('Home')}</NavHomeLink>
                   </LogoLinksWrapper>
-                  <LangSwitcher />
                   <NavWrapper>
+                    <LangSwitcher />
                     {isLoggedIn ? <UserNav /> : <AuthNav />}
                     {user.role !== 'admin' && (
                       <CartLinkWrapper>

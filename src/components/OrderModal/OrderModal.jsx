@@ -13,6 +13,7 @@ import {
 } from './OrderModal.styled';
 import { ErrorMessage, Formik } from 'formik';
 import { useTranslation } from 'react-i18next';
+import i18n from 'i18n';
 
 const modalRoot = document.querySelector('#modal-root');
 
@@ -20,19 +21,22 @@ const schema = yup.object().shape({
   name: yup
     .string()
     .min(2)
-    .max(30, 'must be less than 30 characters')
-    .required(),
-  phone: yup.string().min(10, 'must be at least 10 characters').required(),
+    .max(30, i18n.t('Less_30'))
+    .required(i18n.t('Name_required')),
+  phone: yup
+    .string()
+    .min(10, i18n.t('Atleast_10'))
+    .required(i18n.t('Phone_required')),
   email: yup
     .string()
     .email()
     .matches(
       /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
-      'available latin-based alphabet, numeric character and _ . + -'
+      i18n.t('Available_latin_based')
     )
-    .min(5, 'must be at least 5 characters')
-    .max(63, 'email length must be less than 63 characters')
-    .required(),
+    .min(5, i18n.t('Atleast_5'))
+    .max(63, i18n.t('Email_length'))
+    .required(i18n.t('Email_required')),
 });
 
 export const OrderModal = ({ onClose, onSubmit }) => {
